@@ -22,3 +22,13 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+M09_Act02_Tema02/src/clase02/EjemploJoin.java
+M09_Act02_Tema02/src/clase02/HelloRunnable.java
+M09_Act02_Tema02/src/clase02/HelloThread.java
+M09_Act02_Tema02/src/clase02/HilosRunnable.java
+M09_Act02_Tema02/src/clase02/Repeticion.java
+M09_Act02_Tema02/src/clase02/Serie.java
+M09_Act02_Tema02/src/clase02/SumarHilos.java
+M09_Act02_Tema02/src/clase02/Supermercado.java
+M09_Act02_Tema02/src/clase02/SupermercadoHilos.java
+M09_Act02_Tema02/src/clase02/TestThread.java
