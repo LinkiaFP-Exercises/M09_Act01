@@ -18,6 +18,7 @@ public class MatrizSearcher {
         System.out.print("\nEscribe el número a buscar (0-99): ");
         numeroBusqueda = scanner.nextInt();
         scanner.close();
+        System.out.print("\n");
 
         for (int i = 0; i < matriz[0].length; i++) {
             Thread t = new Thread(new ColumnSearcher(matriz, i, numeroBusqueda));
