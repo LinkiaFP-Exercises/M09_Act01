@@ -23,7 +23,14 @@ public class TotalManager {
 	}
 
 	/**
-	 * Calcula el valor total e imprime información sobre el proceso de cálculo.
+	 * Calcula el valor total e imprime información sobre el proceso de cálculo. La
+	 * función calculate en la clase TotalManager es responsable de actualizar la
+	 * variable total de forma sincronizada, utilizando el valor proporcionado como
+	 * parámetro. Si la suma resultante de total y el valor es negativa, el hilo se
+	 * duerme hasta que se produzca un resultado no negativo. Posteriormente, el
+	 * hilo actualiza el valor de total y notifica a todos los hilos en espera. La
+	 * función imprime mensajes informativos que indican si el hilo se ha quedado
+	 * dormido y si ha despertado para realizar la operación.
 	 *
 	 * @param value El valor a sumar o restar al total.
 	 */

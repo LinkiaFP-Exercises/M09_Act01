@@ -22,6 +22,16 @@ public class Ejercicio03 {
 
 		System.out.println("Valor Inicial : " + initialValue);
 
+		/**
+		 * Esta línea de código crea un flujo de datos a partir de un array generado por
+		 * el método generateWithLength de la interfaz ArrayWithZeroSum. Posteriormente,
+		 * itera sobre cada elemento del flujo utilizando el método forEach. En cada
+		 * iteración, se crea una nueva instancia de NumberThread con el valor actual
+		 * del flujo y se inicia el hilo utilizando el método start(). De esta forma, la
+		 * línea de código genera y administra múltiples hilos, cada uno de los cuales
+		 * maneja un valor específico y se comunica con el totalManager para realizar
+		 * operaciones de suma y resta.
+		 */
 		Arrays.stream(ArrayWithZeroSum.generateWithLength(numberOfExerciseThreads, initialValue))
 				.forEach(x -> new NumberThread(x, totalManager).start());
 

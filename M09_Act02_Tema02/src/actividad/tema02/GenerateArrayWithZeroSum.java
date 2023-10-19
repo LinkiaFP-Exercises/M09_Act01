@@ -13,8 +13,10 @@ import java.util.Random;
 interface ArrayWithZeroSum {
 
 	/**
-	 * Genera un arreglo de longitud dada con valores aleatorios cuya suma total es
-	 * cero. Si no hay un valor inicial la variable {@code initialValue} debe ser
+	 * Genera un array de enteros con una longitud determinada. Llena el array con
+	 * números aleatorios positivos y negativos. Asegura que la suma de todos los
+	 * elementos en el array es cero, incluso después de tener en cuenta un valor
+	 * inicial. Si no hay un valor inicial la variable {@code initialValue} debe ser
 	 * zero.
 	 *
 	 * @param length       La longitud del arreglo.
