@@ -1,6 +1,6 @@
 package actividad.tema02;
 
-public class NumberThread implements Runnable {
+public class NumberThread extends Thread {
 
 	private int value;
 	private TotalManager totalManager;
