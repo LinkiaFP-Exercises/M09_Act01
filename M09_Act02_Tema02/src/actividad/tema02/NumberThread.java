@@ -1,24 +1,22 @@
 package actividad.tema02;
 
-import java.util.Random;
-
 public class NumberThread implements Runnable {
 
-	private TotalManager totalManager;
-	private Random random = new Random();
+	private int value;
+    private TotalManager totalManager;
 
-	public NumberThread(TotalManager totalManager) {
-		this.totalManager = totalManager;
-	}
+    public NumberThread(int value, TotalManager totalManager) {
+        this.value = value;
+        this.totalManager = totalManager;
+    }
 
-	@Override
-	public void run() {
-		int value = random.nextInt(10) - 6; // Números aleatorios entre -5 y 4
-		if (value >= 0) {
-			totalManager.increaseTotal(value);
-		} else {
-			totalManager.decreaseTotal(Math.abs(value));
-		}
-	}
+    @Override
+    public void run() {
+        if (value >= 0) {
+            totalManager.add(value);
+        } else {
+            totalManager.subtract(value);
+        }
+    }
 
 }
