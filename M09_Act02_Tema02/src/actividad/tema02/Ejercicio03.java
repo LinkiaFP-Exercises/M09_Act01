@@ -2,12 +2,13 @@ package actividad.tema02;
 
 public class Ejercicio03 {
 	public static void main(String[] args) {
-		TotalManager totalManager = new TotalManager();
-		int[] array = ArrayWithZeroSum.generateWithLength(20);
-		Thread[] threads = new Thread[20];
+		final int amountOfExercise = 20;
+		final int initialValue = 2;
+		final TotalManager totalManager = new TotalManager(initialValue);
+		final int[] array = ArrayWithZeroSum.generateWithLength(amountOfExercise, initialValue);
+		final Thread[] threads = new Thread[amountOfExercise];
 
-		// Inicializar los 20 hilos
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < amountOfExercise; i++) {
 			threads[i] = new Thread(new NumberThread(array[i], totalManager));
 			threads[i].start();
 		}

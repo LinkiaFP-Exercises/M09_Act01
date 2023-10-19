@@ -8,19 +8,41 @@ interface ArrayWithZeroSum {
 		int[] array = new int[length];
 
 		for (int i = 0; i < length; i++) {
-			if (i % 2 == 0) {
+			if (i % 2 != 0) {
 				array[i] = random.nextInt(100) + 1; // Número positivo
 			} else {
 				array[i] = -random.nextInt(100) - 1; // Número negativo
 			}
 		}
 
-		// Si la suma no es 0, ajustamos el último elemento para que la suma total sea 0
+		// ajustamos el último elemento para que la suma total sea 0
 		int sum = 0;
-		for (int num : array) {
-			sum += num;
+		for (int i = 0; i < array.length - 1; i++) {
+			sum += array[i];
 		}
 		array[length - 1] = -sum;
+
+		return array;
+	}
+
+	static int[] generateWithLength(int length, int initialValue) {
+		Random random = new Random();
+		int[] array = new int[length];
+
+		for (int i = 0; i < length; i++) {
+			if (i % 2 != 0) {
+				array[i] = random.nextInt(100) + 1; // Número positivo
+			} else {
+				array[i] = -random.nextInt(100) - 1; // Número negativo
+			}
+		}
+
+		// ajustamos el último elemento para que la suma total sea 0
+		int sum = 0;
+		for (int i = 0; i < array.length - 1; i++) {
+			sum += array[i];
+		}
+		array[length - 1] = -sum - initialValue;
 
 		return array;
 	}
