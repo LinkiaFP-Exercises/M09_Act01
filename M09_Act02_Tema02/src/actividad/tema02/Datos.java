@@ -2,7 +2,7 @@ package actividad.tema02;
 
 public class Datos {
 	private int total;
-	private boolean isNotEnough = false;
+	private boolean isNotEnough;
 	private boolean wasSleeping;
 
 	public Datos(int inicialValue) {
@@ -10,14 +10,12 @@ public class Datos {
 	}
 
 	public synchronized void rest(int value) {
-		verifyIfIsEnoughToRest(value);
 
-		while (isNotEnough) {
+		while (verifyIfIsEnoughToRest(value)) {
 			if (!wasSleeping)
 				System.out.println(namedThead() + " - Quiero restar " + value + " hay " + total + " --> Duermo");
 			waiting();
 			wasSleeping = true;
-			verifyIfIsEnoughToRest(value);
 		}
 
 		calculate_PrintMsg_Notfy(value, namedThead());
@@ -30,8 +28,9 @@ public class Datos {
 		calculate_PrintMsg_Notfy(value, namedThead());
 	}
 
-	private void verifyIfIsEnoughToRest(int value) {
+	private boolean verifyIfIsEnoughToRest(int value) {
 		isNotEnough = (total + value >= 0) ? false : true;
+		return isNotEnough;
 	}
 
 	private String namedThead() {
