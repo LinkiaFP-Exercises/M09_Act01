@@ -25,34 +25,28 @@ public class TotalManager {
 	}
 
 	/**
-	 * Realiza una resta segura y controlada por hilos. Si el valor a restar provoca
-	 * que el total sea negativo, el hilo se duerme hasta que sea posible realizar
-	 * la resta.
-	 *
-	 * @param value El valor a restar.
+	 * Calcula el valor total en función del valor dado y lo imprime junto con el
+	 * hilo correspondiente. Si el valor es negativo, comprueba si es suficiente
+	 * para restar. Si no es suficiente, el hilo se duerme hasta que pueda restar.
+	 * Si el valor es positivo, realiza una suma segura y controlada por hilos. Si
+	 * no hay suficiente para restar, el hilo se mantiene en espera y luego realiza
+	 * la suma.
+	 * 
+	 * @param value El valor a calcular.
 	 */
-	public synchronized void rest(int value) {
-
-		while (verifyIfIsEnoughToRest(value)) {
-			if (!wasSleeping)
-				System.out.println(namedThead() + " - Quiero restar " + value + " hay " + total + " --> Duermo");
-			waiting();
-			wasSleeping = true;
+	public synchronized void calculate(int value) {
+		if (value < 0)
+			while (verifyIfIsEnoughToRest(value)) {
+				if (!wasSleeping)
+					System.out.println(namedThead() + " - Quiero restar " + value + " hay " + total + " --> Duermo");
+				waiting();
+				wasSleeping = true;
+			}
+		else {
+			if (!isNotEnough)
+				waiting();
+			wasSleeping = false;
 		}
-
-		calculate_PrintMsg_Notfy(value, namedThead());
-	}
-
-	/**
-	 * Realiza una suma segura y controlada por hilos. Si no hay suficiente para
-	 * restar, el hilo se mantiene en espera y luego realiza la suma.
-	 *
-	 * @param value El valor a sumar.
-	 */
-	public synchronized void sum(int value) {
-		if (!isNotEnough)
-			waiting();
-		wasSleeping = false;
 		calculate_PrintMsg_Notfy(value, namedThead());
 	}
 
