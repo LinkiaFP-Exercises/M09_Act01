@@ -18,7 +18,7 @@ public class Ejercicio03 {
 	 * @param args Argumentos de línea de comandos (no se utilizan en esta
 	 *             aplicación).
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 
 		System.out.println("Valor Inicial : " + initialValue);
 
@@ -32,14 +32,14 @@ public class Ejercicio03 {
 		 * maneja un valor específico y se comunica con el totalManager para realizar
 		 * operaciones de suma y resta.
 		 */
+
 		Arrays.stream(ArrayWithZeroSum.generateWithLength(numberOfExerciseThreads, initialValue))
 				.forEach(x -> new NumberThread(x, totalManager).start());
 
 	}
 
 	// Variables estáticas
-	private static final int initialValue = 2;
+	private static final int initialValue = 0;
 	private static final int numberOfExerciseThreads = 20;
 	private static final TotalManager totalManager = new TotalManager(initialValue);
-
 }

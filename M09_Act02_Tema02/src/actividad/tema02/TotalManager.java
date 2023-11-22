@@ -1,5 +1,7 @@
 package actividad.tema02;
 
+import java.util.Random;
+
 /**
  * La clase TotalManager modela un conjunto de datos que incluye el total, el
  * estado de si hay suficiente para restar, y si el hilo estaba en estado de
@@ -12,7 +14,6 @@ package actividad.tema02;
  */
 public class TotalManager {
 	private int total;
-	private boolean isNotEnough;
 	private boolean wasSleeping;
 
 	/**
@@ -36,18 +37,26 @@ public class TotalManager {
 	 */
 	public synchronized void calculate(int value) {
 		if (value < 0)
-			while (verifyIfIsEnoughToRest(value)) {
-				if (!wasSleeping)
+			while (verifyIsNotEnoughToRest(value)) {
+				if (!wasSleeping) {
 					System.out.println(namedThead() + " - Quiero restar " + value + " hay " + total + " --> Duermo");
+				}
+				notifyAll();
 				waiting();
 				wasSleeping = true;
 			}
 		else {
-			if (!isNotEnough)
+//			if (new Random().nextBoolean())
+			if (getNonRepeatingRandomBoolean())
 				waiting();
 			wasSleeping = false;
 		}
 		calculate_PrintMsg_Notfy(value, namedThead());
+	}
+
+	private boolean getNonRepeatingRandomBoolean() {
+		boolean previousBoolean = false;
+		return previousBoolean = (previousBoolean) ? false : new Random().ints(0, 3).findFirst().getAsInt() == 0;
 	}
 
 	/**
@@ -57,9 +66,8 @@ public class TotalManager {
 	 * @param value valor a verificar
 	 * @return booleano {@code isNotEnough}
 	 */
-	private boolean verifyIfIsEnoughToRest(int value) {
-		isNotEnough = (total + value >= 0) ? false : true;
-		return isNotEnough;
+	private boolean verifyIsNotEnoughToRest(int value) {
+		return (total + value < 0);
 	}
 
 	/**
