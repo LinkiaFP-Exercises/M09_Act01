@@ -46,7 +46,6 @@ public class TotalManager {
 			if (getNonRepeatingRandomBoolean()) {
 				waiting();
 			}
-			wasSleeping = false;
 		}
 		calculate_PrintMsg_Notfy(value, namedThead());
 	}
@@ -108,6 +107,7 @@ public class TotalManager {
 		total += value;
 		String message = (wasSleeping) ? " - Despierto --> Valor " : " - Valor ";
 		System.out.println(hilo + message + value + " Total ->: " + total);
+		wasSleeping = false;
 		notifyAll();
 	}
 
