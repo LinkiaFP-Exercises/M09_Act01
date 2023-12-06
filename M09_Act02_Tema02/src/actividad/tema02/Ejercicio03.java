@@ -39,7 +39,7 @@ public class Ejercicio03 {
 	}
 
 	// Variables estáticas
-	private static final int initialValue = 0;
+	private static final int initialValue = 2;
 	private static final int numberOfExerciseThreads = 20;
 	private static final TotalManager totalManager = new TotalManager(initialValue);
 }

@@ -1,7 +1,5 @@
 package actividad.tema02;
 
-import java.util.Random;
-
 /**
  * La clase TotalManager modela un conjunto de datos que incluye el total, el
  * estado de si hay suficiente para restar, y si el hilo estaba en estado de
@@ -14,7 +12,7 @@ import java.util.Random;
  */
 public class TotalManager {
 	private int total;
-	private boolean wasSleeping;
+	private boolean wasSleeping, previousBoolean;
 
 	/**
 	 * Constructor de la clase TotalManager que inicializa el valor total.
@@ -36,27 +34,21 @@ public class TotalManager {
 	 * @param value El valor a calcular.
 	 */
 	public synchronized void calculate(int value) {
-		if (value < 0)
+		if (value < 0) {
 			while (verifyIsNotEnoughToRest(value)) {
 				if (!wasSleeping) {
 					System.out.println(namedThead() + " - Quiero restar " + value + " hay " + total + " --> Duermo");
 				}
-				notifyAll();
 				waiting();
 				wasSleeping = true;
 			}
-		else {
-//			if (new Random().nextBoolean())
-			if (getNonRepeatingRandomBoolean())
+		} else {
+			if (getNonRepeatingRandomBoolean()) {
 				waiting();
+			}
 			wasSleeping = false;
 		}
 		calculate_PrintMsg_Notfy(value, namedThead());
-	}
-
-	private boolean getNonRepeatingRandomBoolean() {
-		boolean previousBoolean = false;
-		return previousBoolean = (previousBoolean) ? false : new Random().ints(0, 3).findFirst().getAsInt() == 0;
 	}
 
 	/**
@@ -91,6 +83,16 @@ public class TotalManager {
 		} catch (InterruptedException e) {
 			System.out.println("InterruptedException capturada");
 		}
+	}
+
+	/**
+	 * Función que devuelve un valor booleano que no se repite en comparación con el
+	 * valor anteriormente generado.
+	 * 
+	 * @return Un valor booleano diferente del anterior.
+	 */
+	private boolean getNonRepeatingRandomBoolean() {
+		return previousBoolean = previousBoolean ? false : true;
 	}
 
 	/**
